@@ -1,0 +1,7 @@
+<ListView [items]="myItems" (itemTap)="onSuburbItemTap($event)">
+    <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+        <StackLayout [class.odd]="odd" [class.even]="even">
+            <Label  [id]="'sub' + i" class=" h3 p-l-15" [text]='item'></Label>
+        </StackLayout>
+    </ng-template>
+</ListView>

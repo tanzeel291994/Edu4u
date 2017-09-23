@@ -1,0 +1,11 @@
+<FlexboxLayout flexDirection="column">
+    <FlexboxLayout flexWrap="wrap" justifyContent="space-around" style="margin:100 0 0 0">
+        <!-- Use flexWrapBefore to control explicit line wrapping -->
+  
+        <Image id="schools" [@buttons]="state" src="res://schools_btn" (tap)="onTappedFun($event)" stretch="none"></Image>
+        <Image  src="res://careers_btn" stretch="none"></Image>
+        <Image flexWrapBefore="true" style="margin:50 0 0 0" src="res://classes_btn" stretch="none"></Image>
+        <Image src="res://colleges_btn" style="margin:15 0 0 0" stretch="none"></Image>
+  
+    </FlexboxLayout>
+  </FlexboxLayout>

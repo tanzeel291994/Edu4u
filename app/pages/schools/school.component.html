@@ -1,0 +1,50 @@
+<StackLayout orientation="vertical">
+    
+
+    <FlexboxLayout flexDirection="column">
+
+    <FlexboxLayout *ngIf="menuTo=='zone'" flexWrap="wrap" justifyContent="flex-start" backgroundColor="lightgray">
+       <my-zone (zoneSelectedEvent)="zoneSelectedEvent($event)"></my-zone>
+    </FlexboxLayout>       
+       
+    <FlexboxLayout *ngIf="zoneSelected" flexWrap="wrap" justifyContent="flex-start" backgroundColor="lightgray">
+                         <DockLayout *ngIf="zoneSelected && !suburbSelected" id="zoneClose_btn" backgroundColor="#551A8B" borderRadius="5" flexWrapBefore="true" class="p-l-5 p-t-2 p-b-2 p-r-5 m-t-15 m-l-15" stretchLastChild="false"> 
+                            <Label textWrap="true" textAlignment="center" textTransform="capitalize" class="m-r-10 p-t-2" text={{zoneSelected}} color="white" > </Label>  
+                            <Image  src="res://ic_highlight_off_white_24dp" (tap)="clearZone($event)" stretch="none"></Image>
+                        </DockLayout>
+                        <DockLayout *ngIf="zoneSelected && suburbSelected" id="zone_btn" backgroundColor="#551A8B" borderRadius="5" flexWrapBefore="true" class="p-l-5 p-t-2 p-b-2 p-r-5 m-t-15 m-l-15" stretchLastChild="false"> 
+                            <Label textWrap="true" textAlignment="center" textTransform="capitalize" class="p-t-2" text={{zoneSelected}} color="white" > </Label>  
+                        </DockLayout>
+                        <DockLayout *ngIf="suburbSelected && !boardSelected" id="suburbClose_btn" backgroundColor="#551A8B" borderRadius="5" class="p-l-5 p-t-2 p-b-2 p-r-5 m-t-15 m-l-15" stretchLastChild="false"> 
+                            <Label textWrap="true" textAlignment="center" textTransform="capitalize" class="m-r-10 p-t-2" text="{{suburbSelected}}" color="white" > </Label>  
+                            <Image  src="res://ic_highlight_off_white_24dp" (tap)="clearSuburb($event)" stretch="none"></Image>
+                        </DockLayout>
+                        <DockLayout *ngIf="suburbSelected && boardSelected" id="suburb_btn" backgroundColor="#551A8B" borderRadius="5" class="p-l-5 p-t-2 p-b-2 p-r-5 m-t-15 m-l-15" stretchLastChild="false"> 
+                            <Label textWrap="true" textAlignment="center" textTransform="capitalize" class="p-t-2" text="{{suburbSelected}}" color="white" > </Label>  
+                        </DockLayout>
+                        <DockLayout *ngIf="boardSelected" id="boardbClose_btn" backgroundColor="#551A8B" borderRadius="5" class="p-l-5 p-t-2 p-b-2 p-r-5 m-t-15 m-l-15" stretchLastChild="false"> 
+                            <Label textWrap="true" textAlignment="center" textTransform="uppercase" class="m-r-10 p-t-2" text="{{boardSelected}}" color="white" > </Label>  
+                            <Image [id]="boardclose" src="res://ic_highlight_off_white_24dp" (tap)="clearBoard($event)" stretch="none"></Image>
+                        </DockLayout>
+              
+    </FlexboxLayout>
+    </FlexboxLayout>
+<StackLayout *ngIf="menuTo == 'suburb'" class="p-5 " orientation="vertical" backgroundColor="lightgray" >
+        <Label class="h3 p-15" text="Select your suburb:"></Label>
+       <!-- <Label class="mdi" [text]="'mdi-favorite' | fonticon"></Label>-->
+    <my-suburb (suburbSelectedEvent)="suburbSelectedEvent($event)" [zoneParam]="zoneSelected"></my-suburb>
+</StackLayout>
+
+<FlexboxLayout *ngIf="menuTo == 'board'" flexWrap="wrap" justifyContent="flex-start" backgroundColor="lightgray">
+        <Label class="h3 p-15" text="Select your board:"></Label>
+        <Button class="button-zone" flexWrapBefore="true"  textTransform="uppercase" whiteSpace="nowrap" class="p-5 m-l-15 m-r-15 m-b-15" text="igsc" borderRadius="5" backgroundColor="#551A8B" color="white"  (tap)="onTappedBoard($event)" stretch="none"></Button>
+        <Button class="button-zone"   textTransform="uppercase" whiteSpace="nowrap" class="p-5 m-l-15 m-r-15 m-b-15" text="ssc" borderRadius="5" backgroundColor="#551A8B" color="white"  (tap)="onTappedBoard($event)" stretch="none"></Button>
+        <Button class="button-zone"    textTransform="uppercase" whiteSpace="nowrap" class="p-5 m-l-15 m-r-15 m-b-15" text="icse" borderRadius="5" backgroundColor="#551A8B" color="white"  (tap)="onTappedBoard($event)" stretch="none"></Button>
+        <Button class="button-zone"  textTransform="uppercase" whiteSpace="nowrap" class="p-5 m-l-15 m-r-15 m-b-15" text="cbsc" borderRadius="5" backgroundColor="#551A8B" color="white"  (tap)="onTappedBoard($event)" stretch="none"></Button>   
+</FlexboxLayout>
+<StackLayout *ngIf="menuTo == 'school'" class="p-5 " orientation="vertical" backgroundColor="lightgray" >
+        <Label class="h3 p-15" text="Select your school:"></Label>
+       <!-- <Label class="mdi" [text]="'mdi-favorite' | fonticon"></Label>-->
+    <my-school-list [boardParam]="boardSelected"></my-school-list>
+</StackLayout>  
+</StackLayout>
